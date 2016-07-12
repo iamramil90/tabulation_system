@@ -8,6 +8,7 @@
 </head>
 <body ng-app="tabsystem">
     <div class="uk-container uk-container-center">
+        <?php $this->load->view('admin/html/top_link'); ?>
        <?php $this->load->view('admin/html/topmenu'); ?>
     <div class="uk-width-1-1">
         <div class="uk-margin-top">
@@ -21,6 +22,6 @@
         </div>
     </div>
     </div>
-    <?php echo $form_modal; ?>
+    <?php echo isset($form_modal) ? $form_modal : ""; ?>
 </body>
 </html>

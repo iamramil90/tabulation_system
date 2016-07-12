@@ -14,12 +14,9 @@ class Participants extends CI_Controller{
 
         $this->load->model('admin/participants_model');
 
-        $data = array(
-                'auth_key' =>md5('ramil'),
-                'logged_in' => TRUE
-        );
-
-        $this->session->set_userdata($data);
+        if(!$this->session->userdata('logged_in')){
+            redirect('admin','refresh');
+        }
     }
 
     public function index()
