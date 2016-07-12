@@ -1,57 +1,139 @@
--- MySQL dump 10.13  Distrib 5.6.30, for debian-linux-gnu (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.2.7.1
+-- http://www.phpmyadmin.net
 --
--- Host: localhost    Database: db_tabsystem
--- ------------------------------------------------------
--- Server version	5.6.30-0ubuntu0.15.10.1
+-- Host: 127.0.0.1
+-- Generation Time: Jul 12, 2016 at 09:33 AM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Database: `db_tabsystem`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_user`
+--
+
+CREATE TABLE IF NOT EXISTS `admin_user` (
+`user_id` int(4) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  `last_login` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `admin_user`
+--
+
+INSERT INTO `admin_user` (`user_id`, `username`, `password`, `is_active`, `last_login`) VALUES
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, '2016-07-12 15:33:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criteria`
+--
+
+CREATE TABLE IF NOT EXISTS `criteria` (
+`criteria_id` int(6) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `percentage` float NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `criteria`
+--
+
+INSERT INTO `criteria` (`criteria_id`, `title`, `description`, `percentage`, `is_active`, `date_created`) VALUES
+(4, 'Beauty of Face', 'Self introduction\r\n                        ', 50, 1, '2016-07-12 04:41:28'),
+(5, 'Figure', 'Swimsuit segment', 30, 1, '2016-07-12 04:42:16'),
+(6, 'Poise and Personality', 'Gown competition', 10, 1, '2016-07-12 04:42:43'),
+(7, 'Intelligence', 'Interview portion', 10, 1, '2016-07-12 06:36:18');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `participants`
 --
 
-DROP TABLE IF EXISTS `participants`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `participants` (
-  `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `participants` (
+`entity_id` tinyint(4) NOT NULL,
   `participant_id` int(9) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `birth_date` date NOT NULL,
   `address` mediumtext NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`entity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `status` tinyint(4) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `participants`
 --
 
-LOCK TABLES `participants` WRITE;
-/*!40000 ALTER TABLE `participants` DISABLE KEYS */;
-INSERT INTO `participants` VALUES (5,5,'Carla ','Miralles','1990-02-13','dawdwad','2016-07-10 03:33:19',1),(6,2,'Loren Mar','Artajos','1990-12-30','LAOAG City','2016-07-10 05:05:58',1),(8,3,'Chissan Rae','Balderas','1993-07-07','INFANTA, Pangasinan','2016-07-10 05:13:24',1),(9,4,'Kamille Alyssa','Quinola','1992-07-13','Vigan city','2016-07-10 05:14:24',1);
-/*!40000 ALTER TABLE `participants` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `participants` (`entity_id`, `participant_id`, `first_name`, `last_name`, `birth_date`, `address`, `created_date`, `status`) VALUES
+(5, 5, 'Carla ', 'Miralles', '1990-02-13', 'Jaro, Leyte', '2016-07-12 07:16:02', 1),
+(6, 2, 'Loren Mar', 'Artajos', '1990-12-30', 'LAOAG City', '2016-07-10 05:05:58', 1),
+(8, 3, 'Chissan Rae', 'Balderas', '1993-07-07', 'INFANTA, Pangasinan', '2016-07-12 07:31:54', 1),
+(9, 4, 'Kamille Alyssa', 'Quinola', '1992-07-13', 'Vigan city', '2016-07-10 05:14:24', 1);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin_user`
+--
+ALTER TABLE `admin_user`
+ ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `criteria`
+--
+ALTER TABLE `criteria`
+ ADD PRIMARY KEY (`criteria_id`);
+
+--
+-- Indexes for table `participants`
+--
+ALTER TABLE `participants`
+ ADD PRIMARY KEY (`entity_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin_user`
+--
+ALTER TABLE `admin_user`
+MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `criteria`
+--
+ALTER TABLE `criteria`
+MODIFY `criteria_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `participants`
+--
+ALTER TABLE `participants`
+MODIFY `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-07-11 20:41:25

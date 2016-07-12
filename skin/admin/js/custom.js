@@ -15,7 +15,7 @@
         }
     })
 
-    app.service('formservice',function(){
+    app.service('formservice',function($http){
 
         var jsonValue = "";
 
@@ -28,38 +28,35 @@
 
            'getData': function(){
                return jsonValue;
-           }
+           },
 
+            'ajaxModal':function(info = null,currentUrl){
+                $http({
+                    method:'POST',
+                    url:currentUrl,
+                    data:{info},
+                    cache:false,
+                }).then(function successCallback(response) {
+
+                    $('#modal-container').html(response.data);
+                    var modal = UIkit.modal(".modalSelector");
+                    modal.show();
+
+                }, function errorCallback(response) {
+                    console.log('error');
+                });
+            }
         }
     });
 
     app.controller('participantcontrollergrid',function($scope,formservice){
 
+        $scope.openModal = function(event){
+            var info = $(event.target).attr("data-info");
+            var url  = $(event.target).attr("data-ajax-url");
+            formservice.ajaxModal(info,url);
+        }
 
-        $scope.viewParticipant = function(event){
-
-            var info =  JSON.parse($(event.target).attr("data-info"));
-
-
-            //set data into formservice
-            formservice.setData(info);
-
-            $("#entity_id").val(info.entity_id);
-            $("#first_name").val(info.first_name);
-            $("#last_name").val(info.last_name);
-            $("#address").val(info.address);
-            $("#status").val(info.status);
-            $("#birth_date").val(info.birth_date);
-            $("#participant_id").val(info.participant_id);
-
-            //open modal
-            var modal = UIkit.modal(".modalSelector");
-            modal.show();
-
-            // log json data
-            console.log(formservice.getData());
-
-        };
     });
 
     app.controller('participantcontrollerform',function($scope,formservice){
@@ -76,6 +73,13 @@
         }
     });
 
+    app.controller('criteriacontrollergrid',function($scope,formservice){
 
+        $scope.openModal = function(event){
+            var info = $(event.target).attr("data-info");
+            var url  = $(event.target).attr("data-ajax-url");
+            formservice.ajaxModal(info,url);
+        }
+    });
 
 })(jQuery)

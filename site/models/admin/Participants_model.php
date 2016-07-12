@@ -23,13 +23,13 @@ class Participants_model extends CI_Model
         return $query;
     }
 
-    public function add_participant($post){
+   /* public function add_participant($post){
 
        $query =  $this->db->insert('participants',$post);
 
         return $query;
     }
-
+*/
     public function save_participant($post){
 
         $entity_id = (int)$post['entity_id'];

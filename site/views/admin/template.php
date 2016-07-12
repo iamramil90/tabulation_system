@@ -6,7 +6,7 @@
 
     <?php $this->load->view('admin/html/head'); ?>
 </head>
-<body ng-app="tabsystem">
+<body ng-app="tabsystem" >
     <div class="uk-container uk-container-center">
         <?php $this->load->view('admin/html/top_link'); ?>
        <?php $this->load->view('admin/html/topmenu'); ?>
@@ -22,6 +22,6 @@
         </div>
     </div>
     </div>
-    <?php echo isset($form_modal) ? $form_modal : ""; ?>
+    <div id="modal-container"><?php echo isset($form_modal) ? $form_modal : ""; ?></div>
 </body>
 </html>
