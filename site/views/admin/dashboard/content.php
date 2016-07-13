@@ -3,6 +3,26 @@
     <div class=" uk-width-1-3 uk-container-center">
         <img class=""  src="<?php echo base_url('skin/admin/images/logo.png') ?>"/>
     </div>
+    <div class="uk-grid uk-container-center uk-margin-large-top">
+         <div class=" uk-width-1-3">
+             <div class=" uk-panel uk-panel-box uk-text-center">
+                 <h3 class="uk-panel-title"><i class="uk-icon-star"></i>&nbsp;Participants</h3>
+                 <a href="<?php echo base_url('admin/participants') ?>" class="">View</a>
+             </div>
+         </div>
+        <div class=" uk-width-1-3">
+            <div class=" uk-panel uk-panel-box uk-text-center">
+                <h3 class="uk-panel-title"><i class="uk-icon-list-alt"></i>&nbsp;Criteria</h3>
+                <a href="<?php echo base_url('admin/criteria') ?>" >View</a>
+            </div>
+        </div>
+        <div class=" uk-width-1-3">
+            <div class=" uk-panel uk-panel-box uk-text-center">
+                <h3 class="uk-panel-title"><i class="uk-icon-users"></i>&nbsp;Judges</h3>
+                <a href="<?php echo base_url('admin/judges') ?>" >View</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php /*

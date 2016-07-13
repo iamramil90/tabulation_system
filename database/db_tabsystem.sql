@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2016 at 09:33 AM
+-- Generation Time: Jul 13, 2016 at 03:46 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `admin_user` (
 --
 
 INSERT INTO `admin_user` (`user_id`, `username`, `password`, `is_active`, `last_login`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, '2016-07-12 15:33:00');
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, '2016-07-13 09:16:46');
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `criteria` (
   `percentage` float NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `criteria`
@@ -65,6 +65,29 @@ INSERT INTO `criteria` (`criteria_id`, `title`, `description`, `percentage`, `is
 (5, 'Figure', 'Swimsuit segment', 30, 1, '2016-07-12 04:42:16'),
 (6, 'Poise and Personality', 'Gown competition', 10, 1, '2016-07-12 04:42:43'),
 (7, 'Intelligence', 'Interview portion', 10, 1, '2016-07-12 06:36:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `judges`
+--
+
+CREATE TABLE IF NOT EXISTS `judges` (
+`judge_id` int(6) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `is_active` int(3) NOT NULL,
+  `last_login` datetime NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `judges`
+--
+
+INSERT INTO `judges` (`judge_id`, `first_name`, `last_name`, `username`, `password`, `is_active`, `last_login`) VALUES
+(1, 'Ramil', 'Gonzales', 'rgonzales', '45c5af0e194e9b204a8413f818f192f3ef3a43fc5063ac24c45c5fc64b4762b0e632010d1bb3afd98c4af978a0ac69c101151553d70eeda0a2b7a3323bf99100axUkC3G2rYM3bSrTYQEdeX68H+ci7qPqqBhO9XXxr4s=', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -81,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `participants` (
   `address` mediumtext NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `participants`
@@ -90,8 +113,7 @@ CREATE TABLE IF NOT EXISTS `participants` (
 INSERT INTO `participants` (`entity_id`, `participant_id`, `first_name`, `last_name`, `birth_date`, `address`, `created_date`, `status`) VALUES
 (5, 5, 'Carla ', 'Miralles', '1990-02-13', 'Jaro, Leyte', '2016-07-12 07:16:02', 1),
 (6, 2, 'Loren Mar', 'Artajos', '1990-12-30', 'LAOAG City', '2016-07-10 05:05:58', 1),
-(8, 3, 'Chissan Rae', 'Balderas', '1993-07-07', 'INFANTA, Pangasinan', '2016-07-12 07:31:54', 1),
-(9, 4, 'Kamille Alyssa', 'Quinola', '1992-07-13', 'Vigan city', '2016-07-10 05:14:24', 1);
+(8, 3, 'Chissan Rae', 'Balderas', '1993-07-07', 'INFANTA, Pangasinan', '2016-07-12 07:31:54', 1);
 
 --
 -- Indexes for dumped tables
@@ -108,6 +130,12 @@ ALTER TABLE `admin_user`
 --
 ALTER TABLE `criteria`
  ADD PRIMARY KEY (`criteria_id`);
+
+--
+-- Indexes for table `judges`
+--
+ALTER TABLE `judges`
+ ADD PRIMARY KEY (`judge_id`);
 
 --
 -- Indexes for table `participants`
@@ -128,12 +156,17 @@ MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-MODIFY `criteria_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `criteria_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `judges`
+--
+ALTER TABLE `judges`
+MODIFY `judge_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-MODIFY `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

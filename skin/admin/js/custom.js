@@ -49,6 +49,19 @@
         }
     });
 
+
+    app.controller('participantcontrollerform',function($scope,formservice){
+
+    });
+    app.controller('judgescontrollerform',function($scope){
+          
+    });
+    app.controller('criteriacontrollerform',function($scope,formservice){
+
+    });
+
+
+
     app.controller('participantcontrollergrid',function($scope,formservice){
 
         $scope.openModal = function(event){
@@ -58,23 +71,15 @@
         }
 
     });
-
-    app.controller('participantcontrollerform',function($scope,formservice){
-
-        $scope.remove = function(event){
-
-            var $this = this;
-
-            var href = $(event.target).attr('href');
-            var participant_id = formservice.getData().entity_id;
-            var url = href + '?entity_id=' + participant_id;
-
-            window.location = url;
+    app.controller('criteriacontrollergrid',function($scope,formservice){
+        $scope.openModal = function(event){
+            var info = $(event.target).attr("data-info");
+            var url  = $(event.target).attr("data-ajax-url");
+            formservice.ajaxModal(info,url);
         }
     });
-
-    app.controller('criteriacontrollergrid',function($scope,formservice){
-
+    
+    app.controller('judgescontrollergrid',function($scope,formservice){
         $scope.openModal = function(event){
             var info = $(event.target).attr("data-info");
             var url  = $(event.target).attr("data-ajax-url");

@@ -1,6 +1,12 @@
 
 <!-- This is the modal -->
-
+<?php
+    $criteria_id = isset($criteria_id) ? $criteria_id : null;
+    $title = isset($title) ? $title : null;
+    $percentage = isset($percentage) ? $percentage : null;
+    $description = isset($description) ? $description : null;
+    $is_active = isset($is_active) ? $is_active : null;
+?>
 <div id="criteria" class="uk-modal modalSelector">
     <div class="uk-modal-dialog">
 
@@ -35,7 +41,9 @@
                         </div>
                         <div class="uk-width-1-1 uk-margin-top">
                             <button class="uk-button">Submit</button>
-                            <a  href="<?php echo base_url('/admin/criteria/remove/'.$criteria_id) ?>" no-click ng-click="remove($event)" class=" uk-text-danger uk-float-right">Delete</a>
+                            <?php if($criteria_id != ''): ?>
+                                <a  href="<?php echo base_url('/admin/criteria/remove/'.$criteria_id) ?>" no-click ng-click="remove($event)" class=" uk-text-danger uk-float-right">Delete</a>
+                            <?php endif ?>
                         </div>
                     </div>
                 </fieldset>

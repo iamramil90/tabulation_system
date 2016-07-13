@@ -4,7 +4,7 @@
             <li><a href="<?php echo base_url('admin/dashboard') ?>">Dashboard</a></li>
             <li><a href="<?php echo base_url('admin/participants') ?>">Manage Contestant</a></li>
             <li><a href="<?php echo base_url('admin/criteria') ?>">Manage Criteria</a></li>
-            <li><a href="">Manage Judges</a></li>
+            <li><a href="<?php echo base_url('admin/judges') ?>">Manage Judges</a></li>
             <li><a href="">Manage Scores</a></li>
             <li class="uk-parent" data-uk-dropdown><a href="">System</a>
                 <div class="uk-dropdown">

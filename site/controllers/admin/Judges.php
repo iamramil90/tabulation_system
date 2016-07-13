@@ -2,41 +2,41 @@
 
 /**
  * Created by PhpStorm.
- * User: ramil
- * Date: 7/9/16
- * Time: 1:19 PM
+ * User: rgonzales
+ * Date: 7/13/2016
+ * Time: 8:06 AM
  */
-class Participants extends CI_Controller{
+class Judges extends CI_Controller{
 
-    public function __construct()
-    {
+    public function __construct(){
+
         parent::__construct();
 
-        $this->load->model('admin/participants_model');
+        $this->load->model('admin/judges_model');
+        $this->load->library('encryption');
 
         if(!$this->session->userdata('logged_in')){
             redirect('admin','refresh');
         }
     }
 
-    public function index()
-    {
+    public function index(){
 
-        $collection['participants'] = $this->participants_model->getAllParticipants();;
-
-        $data['content_title'] = "Manage Contestant";
-        $data['content'] = $this->load->view('admin/participants/grid',$collection,true);
-        $data['title'] = 'Manage Contestant';
+        $collection['judges'] = $this->judges_model->get_all_judges();;
+ 
+        $data['content_title'] = "Manage Judges";
+        $data['content'] = $this->load->view('admin/judges/grid',$collection,true);
+        $data['title'] = 'Manage Judges';
         $this->load->view('admin/template.php',$data);
     }
 
     public function save(){
 
         $post = $this->input->post();
-
+        $post['password'] = $this->encryption->encrypt($post['password']);
         try{
 
-            $this->participants_model->save_participant($post);
+            $this->judges_model->save_judge($post);
 
             $this->session->set_flashdata('success', 'Successfully saved!');
 
@@ -45,15 +45,15 @@ class Participants extends CI_Controller{
             $this->session->set_flashdata('error', 'Error: '.$e->getMessage());
         }
 
-            redirect('admin/participants/');
+        redirect('admin/judges/');
     }
 
     public function remove(){
-        
-        $entity_id = $this->uri->segment(4); //segment 4 entity_id
+
+        $judge_id = $this->uri->segment(4); //segment 4 entity_id
         try{
 
-            $this->participants_model->remove_participant($entity_id);
+            $this->judges_model->remove_judge($judge_id);
             $this->session->set_flashdata('success', 'Successfully removed!');
 
 
@@ -61,7 +61,7 @@ class Participants extends CI_Controller{
             $this->session->set_flashdata('error', 'Error: '.$e->getMessage());
         }
 
-        redirect('admin/participants/');
+        redirect('admin/judges/');
     }
 
     public function loadform(){
@@ -70,8 +70,7 @@ class Participants extends CI_Controller{
         $request = json_decode($postdata);
 
         $data = json_decode($request->info,true);
-        $this->load->view('admin/participants/form',$data);
+        $this->load->view('admin/judges/form',$data);
     }
 
-  
 }

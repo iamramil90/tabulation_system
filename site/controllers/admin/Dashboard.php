@@ -16,7 +16,7 @@ class Dashboard extends CI_Controller{
 
 
         $data['form_modal'] = "";
-        $data['content_title'] = "Dashboard";
+        $data['content_title'] = "";
         $data['content'] = $this->load->view('admin/dashboard/content',TRUE,TRUE);
         $data['title'] = 'Dashboard';
         $this->load->view('admin/template.php',$data);
