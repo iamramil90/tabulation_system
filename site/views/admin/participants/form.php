@@ -5,7 +5,9 @@
     $participant_id = isset($participant_id) ? $participant_id : null;
     $first_name = isset($first_name) ? $first_name : null;
     $last_name = isset($last_name) ? $last_name : null;
-    $birth_date = isset($birth_date) ? $birth_date : null;
+    $height = isset($height) ? $height : null;
+    $age = isset($age) ? $age : null;
+    $about = isset($about) ? $about : null;
     $address = isset($address) ? $address : null;
     $status = isset($status) ? $status : null;
     $images = isset($images) ? $images : null;
@@ -42,13 +44,15 @@
                                     <label class="uk-form-label" for="">Last Name</label>
                                     <input type="text" value="<?php echo $last_name ?>" id="last_name" name="last_name" ng-model="last_name" class="uk-width-1-1" required/>
                                 </div>
-                                <div class="uk-width-1-1 uk-margin-top ">
-                                    <label class="uk-form-label" for="">Birth Date</label>
-                                    <div class="uk-form-icon uk-width-1-1">
-                                        <i class="uk-icon-calendar"></i>
-                                        <input type="text" data-uk-datepicker="{format:'YYYY/MM/DD'}" value="<?php echo $birth_date ?>" id="birth_date" name="birth_date" ng-model="birth_date" class="uk-width-1-1"  required/>
-                                    </div>
-                                </div>
+                                     <div class="uk-width-1-2 uk-margin-top ">
+                                        <label class="uk-form-label" for="">Age</label>
+                                            <input type="text" value="<?php echo $age ?>" id="age" name="age" ng-model="age" class="uk-width-1-1"  />
+                                        </div>
+
+                                    <div class="uk-width-1-2 uk-margin-top ">
+                                         <label class="uk-form-label" for="">Height</label>
+                                         <input type="text" value="<?php echo $height ?>" id="height" name="height" ng-model="height" class="uk-width-1-1"  />
+                                     </div>
                                 <div class="uk-width-1-1 uk-margin-top">
                                     <label class="uk-form-label" for="">Address</label>
                                     <textarea class="uk-width-1-1" id="address" ng-model="adress" name="address"><?php echo $address ?></textarea>
@@ -78,6 +82,10 @@
                             </div>
                         </li>
                         <li>
+                            <div class="uk-width-1-1 uk-margin-top">
+                                <label class="uk-form-label" for="">About</label>
+                                <textarea rows="5" class="uk-width-1-1" id="about" ng-model="about" name="about"><?php echo $about ?></textarea>
+                            </div>
                             <div class="uk-width-1-1 uk-margin-top">
                                 <label class="uk-form-label" for="">Status</label>
                                 <select name="status" class="uk-width-1-1">

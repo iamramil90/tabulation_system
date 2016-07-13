@@ -42,7 +42,7 @@ class Participants extends CI_Controller{
 
             $entity_id = $query->db->insert_id() > 0 ? $query->db->insert_id() : $post['entity_id']; // participant_ID
 
-            if($entity_id > 0){
+            if($entity_id > 0 && is_uploaded_file($_FILES['participant_image']['tmp_name'])) {
 
                $image =  $this->_upload_image('participant_image');
 

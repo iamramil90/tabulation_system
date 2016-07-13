@@ -22,7 +22,7 @@
                             <input type="text" value="<?php echo $title; ?>" id="title" name="title" ng-model="title" class="uk-width-1-1" required/>
                         </div>
                         <div class="uk-width-1-1">
-                            <label class="uk-form-label" for="">Percentage*</label>
+                            <label class="uk-form-label" for="">Weight/Points*</label>
                             <div class="uk-form-icon uk-width-1-1">
                                 <i class="uk-icon-percent"></i>
                                 <input type="text" name="percentage" id="percentage" ng-model="percentage" class="uk-width-1-1" value="<?php echo $percentage; ?>"  required/>

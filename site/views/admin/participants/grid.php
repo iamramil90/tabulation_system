@@ -8,7 +8,7 @@
         <thead>
         <tr>
             <th></th>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Age</th>
             <th>Active</th>
@@ -25,7 +25,7 @@
                         <td class=""><input  type="checkbox"></td>
                         <td><?php echo $item['participant_id'] ?></td>
                         <td><?php echo $item['first_name'] . " " . $item['last_name'] ?></td>
-                        <td><?php echo get_age($item['birth_date'])?></td>
+                        <td><?php echo $item['age'] ?></td>
                         <td><?php echo status_text($item['status']) ?></td>
                         <td><button  ng-click="openModal($event)" data-ajax-url="<?php echo base_url('admin/participants/loadform') ?>" data-info='<?php echo $json_info ?>' class="uk-button uk-button-mini">View</button></td>
                     </tr>
