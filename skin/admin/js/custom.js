@@ -13,7 +13,7 @@
                 event.preventDefault();
             });
         }
-    })
+    });
 
     app.service('formservice',function($http){
 
@@ -50,16 +50,24 @@
     });
 
 
-    app.controller('participantcontrollerform',function($scope,formservice){
-
+    app.controller('participantcontrollerform',function($scope){
+            $scope.addImage = function(){
+                alert();
+            }
     });
     app.controller('judgescontrollerform',function($scope){
-          
+
     });
-    app.controller('criteriacontrollerform',function($scope,formservice){
+    app.controller('criteriacontrollerform',function($scope){
 
     });
 
+    app.controller('modalController',function($scope){
+
+        $scope.addImage = function(){
+            alert();
+        }
+    });
 
 
     app.controller('participantcontrollergrid',function($scope,formservice){

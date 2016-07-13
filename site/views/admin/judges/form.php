@@ -47,14 +47,17 @@
                             <option value="0" <?php if($is_active == 0){ echo "SELECTED";} ?>>No</option>
                         </select>
                         </div>
-                        <div class="uk-width-1-1 uk-margin-top">
-                            <button class="uk-button">Submit</button>
-                            <?php if($judge_id != ''): ?>
-                                <a href="<?php echo base_url('/admin/judges/remove/'. $judge_id )?>"  no-click  class=" uk-text-danger uk-float-right">Delete</a>
-                            <?php endif ?>
-                        </div>
+
                     </div>
                 </fieldset>
+                <div class="uk-modal-footer">
+                    <div class="uk-width-1-1">
+                        <button class="uk-button">Submit</button>
+                        <?php if($judge_id != ''): ?>
+                            <a href="<?php echo base_url('/admin/judges/remove/'. $judge_id )?>"  no-click  class=" uk-text-danger uk-float-right">Delete</a>
+                        <?php endif ?>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

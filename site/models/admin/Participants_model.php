@@ -8,6 +8,8 @@
  */
 class Participants_model extends CI_Model
 {
+    const IMAGE_FILE_PATH = '/media/participants/';
+
 
     public function __construct()
     {
@@ -17,8 +19,9 @@ class Participants_model extends CI_Model
 
     public function getAllParticipants(){
 
-        $query = $this->db->query("SELECT * from participants");
-        
+        $query = $this->db->query("SELECT e.*, GROUP_CONCAT(img.filepath,',') as images from participants
+          as e  LEFT JOIN media as img ON e.entity_id = img.attrib_id GROUP BY e.entity_id ORDER BY e.entity_id");
+
         
         return $query;
     }
@@ -41,6 +44,7 @@ class Participants_model extends CI_Model
             $this->db->update('participants');
         }else{
             $this->db->insert('participants');
+
         }
 
 
@@ -51,6 +55,17 @@ class Participants_model extends CI_Model
 
         $this->db->where('entity_id',$entity_id);
         $this->db->delete(participants);
+
+        return $this;
+
+    }
+
+    public function save_image($image,$entity_id){
+
+        $image_filename = self::IMAGE_FILE_PATH . $image['file_name'];
+        $this->db->set('filepath',$image_filename);
+        $this->db->set('attrib_id',$entity_id);
+        $this->db->insert('media');
 
         return $this;
 

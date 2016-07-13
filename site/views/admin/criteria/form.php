@@ -39,14 +39,17 @@
                             <option value="0" <?php if($is_active == 0){ echo "SELECTED";} ?> >No</option>
                         </select>
                         </div>
-                        <div class="uk-width-1-1 uk-margin-top">
-                            <button class="uk-button">Submit</button>
-                            <?php if($criteria_id != ''): ?>
-                                <a  href="<?php echo base_url('/admin/criteria/remove/'.$criteria_id) ?>" no-click ng-click="remove($event)" class=" uk-text-danger uk-float-right">Delete</a>
-                            <?php endif ?>
-                        </div>
+
                     </div>
                 </fieldset>
+                <div class="uk-modal-footer">
+                    <div class="uk-width-1-1">
+                        <button class="uk-button">Submit</button>
+                        <?php if($criteria_id != ''): ?>
+                            <a  href="<?php echo base_url('/admin/criteria/remove/'.$criteria_id) ?>" no-click ng-click="remove($event)" class=" uk-text-danger uk-float-right">Delete</a>
+                        <?php endif ?>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

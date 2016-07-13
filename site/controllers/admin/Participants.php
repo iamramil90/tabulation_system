@@ -8,11 +8,13 @@
  */
 class Participants extends CI_Controller{
 
+
     public function __construct()
     {
         parent::__construct();
 
         $this->load->model('admin/participants_model');
+        $this->load->library('upload');
 
         if(!$this->session->userdata('logged_in')){
             redirect('admin','refresh');
@@ -36,7 +38,18 @@ class Participants extends CI_Controller{
 
         try{
 
-            $this->participants_model->save_participant($post);
+            $query =$this->participants_model->save_participant($post);
+
+            $entity_id = $query->db->insert_id() > 0 ? $query->db->insert_id() : $post['entity_id']; // participant_ID
+
+            if($entity_id > 0){
+
+               $image =  $this->_upload_image('participant_image');
+
+                if(!$image['error']){
+                    $this->participants_model->save_image($image['upload_data'],$entity_id);
+                }
+            }
 
             $this->session->set_flashdata('success', 'Successfully saved!');
 
@@ -73,5 +86,26 @@ class Participants extends CI_Controller{
         $this->load->view('admin/participants/form',$data);
     }
 
-  
+    private function _upload_image($image){
+
+        $config['file_name']            = 'IMG' . rand();
+        $config['upload_path']          = $_SERVER['DOCUMENT_ROOT'] . '/media/participants/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 1000;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ( ! $this->upload->do_upload($image))
+        {
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else
+        {
+            $data = array('error' => 0,'upload_data' => $this->upload->data());
+        }
+
+        return $data;
+    }
 }

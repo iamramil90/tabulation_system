@@ -22,6 +22,6 @@
         </div>
     </div>
     </div>
-    <div id="modal-container"><?php echo isset($form_modal) ? $form_modal : ""; ?></div>
+    <div id="modal-container" ng-controller="modalController"><?php echo isset($form_modal) ? $form_modal : ""; ?></div>
 </body>
 </html>
