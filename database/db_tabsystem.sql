@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.13.1deb1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 13, 2016 at 09:59 PM
--- Server version: 5.6.30-0ubuntu0.15.10.1
--- PHP Version: 5.6.11-1ubuntu3.4
+-- Host: 127.0.0.1
+-- Generation Time: Jul 14, 2016 at 04:17 AM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `db_tabsystem`
@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `admin_user` (
-  `user_id` int(4) NOT NULL,
+`user_id` int(4) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `is_active` int(11) NOT NULL,
   `last_login` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `admin_user`
@@ -48,13 +48,13 @@ INSERT INTO `admin_user` (`user_id`, `username`, `password`, `is_active`, `last_
 --
 
 CREATE TABLE IF NOT EXISTS `criteria` (
-  `criteria_id` int(6) NOT NULL,
+`criteria_id` int(6) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(500) NOT NULL,
   `percentage` float NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `criteria`
@@ -73,14 +73,14 @@ INSERT INTO `criteria` (`criteria_id`, `title`, `description`, `percentage`, `is
 --
 
 CREATE TABLE IF NOT EXISTS `judges` (
-  `judge_id` int(6) NOT NULL,
+`judge_id` int(6) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(500) NOT NULL,
   `is_active` int(3) NOT NULL,
   `last_login` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `judges`
@@ -96,40 +96,41 @@ INSERT INTO `judges` (`judge_id`, `first_name`, `last_name`, `username`, `passwo
 --
 
 CREATE TABLE IF NOT EXISTS `media` (
-  `entity_id` int(6) NOT NULL,
+`entity_id` int(6) NOT NULL,
   `attrib_id` int(6) NOT NULL,
   `filepath` varchar(255) NOT NULL,
+  `set_default` tinyint(4) NOT NULL DEFAULT '0',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`entity_id`, `attrib_id`, `filepath`, `date_created`) VALUES
-(22, 19, '/media/participants/IMG338163629.jpg', '2016-07-13 13:16:31'),
-(23, 19, '/media/participants/IMG1099439472.jpg', '2016-07-13 13:16:56'),
-(24, 19, '/media/participants/IMG620944168.jpg', '2016-07-13 13:17:14'),
-(27, 20, '/media/participants/IMG1237719425.jpg', '2016-07-13 13:28:28'),
-(28, 20, '/media/participants/IMG1622364463.jpg', '2016-07-13 13:28:34'),
-(29, 20, '/media/participants/IMG446747993.jpg', '2016-07-13 13:28:40'),
-(30, 20, '/media/participants/IMG2028228140.jpg', '2016-07-13 13:28:46'),
-(31, 21, '/media/participants/IMG204657703.jpg', '2016-07-13 13:30:36'),
-(32, 21, '/media/participants/IMG1756067537.jpg', '2016-07-13 13:30:42'),
-(33, 21, '/media/participants/IMG164790562.jpg', '2016-07-13 13:30:48'),
-(34, 21, '/media/participants/IMG1709118027.jpg', '2016-07-13 13:30:54'),
-(35, 22, '/media/participants/IMG808721363.jpg', '2016-07-13 13:33:16'),
-(36, 22, '/media/participants/IMG692215961.jpg', '2016-07-13 13:33:22'),
-(37, 22, '/media/participants/IMG2100942126.jpg', '2016-07-13 13:33:27'),
-(38, 22, '/media/participants/IMG483764393.jpg', '2016-07-13 13:33:33'),
-(39, 23, '/media/participants/IMG353726019.jpg', '2016-07-13 13:35:45'),
-(40, 23, '/media/participants/IMG932873675.jpg', '2016-07-13 13:35:51'),
-(41, 23, '/media/participants/IMG1703131908.jpg', '2016-07-13 13:35:58'),
-(42, 23, '/media/participants/IMG852923343.jpg', '2016-07-13 13:36:04'),
-(43, 24, '/media/participants/IMG744242889.jpg', '2016-07-13 13:39:52'),
-(44, 24, '/media/participants/IMG69602273.jpg', '2016-07-13 13:39:59'),
-(45, 24, '/media/participants/IMG1899294012.jpg', '2016-07-13 13:40:05'),
-(46, 24, '/media/participants/IMG797119073.jpg', '2016-07-13 13:40:11');
+INSERT INTO `media` (`entity_id`, `attrib_id`, `filepath`, `set_default`, `date_created`) VALUES
+(22, 19, '/media/participants/IMG338163629.jpg', 1, '2016-07-14 02:15:52'),
+(23, 19, '/media/participants/IMG1099439472.jpg', 0, '2016-07-13 13:16:56'),
+(24, 19, '/media/participants/IMG620944168.jpg', 0, '2016-07-13 13:17:14'),
+(27, 20, '/media/participants/IMG1237719425.jpg', 1, '2016-07-14 02:15:58'),
+(28, 20, '/media/participants/IMG1622364463.jpg', 0, '2016-07-13 13:28:34'),
+(29, 20, '/media/participants/IMG446747993.jpg', 0, '2016-07-13 13:28:40'),
+(30, 20, '/media/participants/IMG2028228140.jpg', 0, '2016-07-13 13:28:46'),
+(31, 21, '/media/participants/IMG204657703.jpg', 1, '2016-07-14 02:16:02'),
+(32, 21, '/media/participants/IMG1756067537.jpg', 0, '2016-07-13 13:30:42'),
+(33, 21, '/media/participants/IMG164790562.jpg', 0, '2016-07-13 13:30:48'),
+(34, 21, '/media/participants/IMG1709118027.jpg', 0, '2016-07-13 13:30:54'),
+(35, 22, '/media/participants/IMG808721363.jpg', 1, '2016-07-14 02:16:11'),
+(36, 22, '/media/participants/IMG692215961.jpg', 0, '2016-07-13 13:33:22'),
+(37, 22, '/media/participants/IMG2100942126.jpg', 0, '2016-07-13 13:33:27'),
+(38, 22, '/media/participants/IMG483764393.jpg', 0, '2016-07-13 13:33:33'),
+(39, 23, '/media/participants/IMG353726019.jpg', 1, '2016-07-14 02:16:16'),
+(40, 23, '/media/participants/IMG932873675.jpg', 0, '2016-07-13 13:35:51'),
+(41, 23, '/media/participants/IMG1703131908.jpg', 0, '2016-07-13 13:35:58'),
+(42, 23, '/media/participants/IMG852923343.jpg', 0, '2016-07-13 13:36:04'),
+(43, 24, '/media/participants/IMG744242889.jpg', 1, '2016-07-14 02:16:20'),
+(44, 24, '/media/participants/IMG69602273.jpg', 0, '2016-07-13 13:39:59'),
+(45, 24, '/media/participants/IMG1899294012.jpg', 0, '2016-07-13 13:40:05'),
+(46, 24, '/media/participants/IMG797119073.jpg', 0, '2016-07-13 13:40:11');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ INSERT INTO `media` (`entity_id`, `attrib_id`, `filepath`, `date_created`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `participants` (
-  `entity_id` tinyint(4) NOT NULL,
+`entity_id` tinyint(4) NOT NULL,
   `participant_id` int(9) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `participants` (
   `address` mediumtext NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `participants`
@@ -171,31 +172,31 @@ INSERT INTO `participants` (`entity_id`, `participant_id`, `first_name`, `last_n
 -- Indexes for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  ADD PRIMARY KEY (`user_id`);
+ ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `criteria`
 --
 ALTER TABLE `criteria`
-  ADD PRIMARY KEY (`criteria_id`);
+ ADD PRIMARY KEY (`criteria_id`);
 
 --
 -- Indexes for table `judges`
 --
 ALTER TABLE `judges`
-  ADD PRIMARY KEY (`judge_id`);
+ ADD PRIMARY KEY (`judge_id`);
 
 --
 -- Indexes for table `media`
 --
 ALTER TABLE `media`
-  ADD PRIMARY KEY (`entity_id`);
+ ADD PRIMARY KEY (`entity_id`);
 
 --
 -- Indexes for table `participants`
 --
 ALTER TABLE `participants`
-  ADD PRIMARY KEY (`entity_id`);
+ ADD PRIMARY KEY (`entity_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -205,27 +206,27 @@ ALTER TABLE `participants`
 -- AUTO_INCREMENT for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `criteria_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `criteria_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `judges`
 --
 ALTER TABLE `judges`
-  MODIFY `judge_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `judge_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `entity_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+MODIFY `entity_id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `entity_id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
