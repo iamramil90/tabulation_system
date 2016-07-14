@@ -11,7 +11,9 @@
     $address = isset($address) ? $address : null;
     $status = isset($status) ? $status : null;
     $images = isset($images) ? $images : null;
+    $img_id =  isset($img_id) ? $img_id : null;
 ?>
+
 <div id="contestant" class="uk-modal modalSelector"  ng-controller="participantcontrollerform">
     <div class="uk-modal-dialog">
         <a class="uk-modal-close uk-close"></a>
@@ -71,10 +73,23 @@
 
                                 <div class="uk-width-1-1 uk-margin-top">
                                     <ul class="uk-thumbnav uk-grid-width-1-3">
-                                        <?php $thumbnail = array_filter(explode(",",$images)); ?>
+                                        <?php
+                                            $thumbnail = array_filter(explode(",",$images));
+                                            $img_id = array_filter(explode(",",$img_id));
+                                        ?>
                                         <?php if(count($thumbnail) > 0): ?>
-                                            <?php foreach($thumbnail as $image) : ?>
-                                               <li><img class="uk-thumbnail uk-thumbnail-small" src="<?php echo base_url($image) ?>" alt=""></li>
+                                            <?php foreach($thumbnail as $key => $image) : ?>
+                                               <li class="uk-active">
+                                                   <figure class="uk-overlay uk-overlay-hover">
+                                                        <img class="uk-thumbnail uk-thumbnail-small" src="<?php echo base_url($image) ?>" alt="">
+                                                       <figcaption class="uk-overlay-panel uk-vertical-align ">
+                                                           <div class="uk-panel uk-vertical-align-bottom">
+                                                               <span onclick="removeselectedimage(this)" data-addimage-url="<?php echo base_url('admin/participants/removeimage') ?>"   data-participant-id="<?php echo $entity_id ?>" data-image-id="<?php echo $img_id[$key] ?>" class="uk-icon-button uk-icon-trash"></span>
+                                                               <span onclick="setdefaultimage(this)" data-addimage-url="<?php echo base_url('admin/participants/setdefaultimage') ?>" data-participant-id="<?php echo $entity_id ?>" data-image-id="<?php echo $img_id[$key] ?>" class="uk-icon-button uk-icon-check"></span>
+                                                           </div>
+                                                       </figcaption>
+                                                   </figure>
+                                               </li>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </ul>

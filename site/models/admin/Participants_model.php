@@ -19,20 +19,33 @@ class Participants_model extends CI_Model
 
     public function getAllParticipants(){
 
-        $query = $this->db->query("SELECT e.*, GROUP_CONCAT(img.filepath,',') as images from participants
+        $query = $this->db->query("SELECT e.*, GROUP_CONCAT(img.filepath,',') as images,GROUP_CONCAT(img.entity_id,',') as img_id from participants
           as e  LEFT JOIN media as img ON e.entity_id = img.attrib_id GROUP BY e.entity_id ORDER BY e.entity_id");
 
         
         return $query;
     }
 
-   /* public function add_participant($post){
+    public function set_default_image($get){
 
-       $query =  $this->db->insert('participants',$post);
+        $participant_id = (int)$get['participant_id'];
+        $image_id       = (int)$get['image_id'];
 
-        return $query;
+        $this->db->query("UPDATE media set set_default = CASE WHEN entity_id = $image_id THEN 1
+                          ELSE 0 END WHERE attrib_id = $participant_id");
+
+        return $this;
     }
-*/
+
+    public function remove_selected_image($get){
+
+        $image_id       = (int)$get['image_id'];
+
+        $this->db->delete('media', array('entity_id' => $image_id));
+
+        return $this;
+    }
+
     public function save_participant($post){
 
         $entity_id = (int)$post['entity_id'];

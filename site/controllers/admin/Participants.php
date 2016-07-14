@@ -25,7 +25,7 @@ class Participants extends CI_Controller{
     {
 
         $collection['participants'] = $this->participants_model->getAllParticipants();;
-
+       // $collection['form_modal'] = $this->load->view('admin/participants/form',true,true);
         $data['content_title'] = "Manage Contestant";
         $data['content'] = $this->load->view('admin/participants/grid',$collection,true);
         $data['title'] = 'Manage Contestant';
@@ -84,6 +84,18 @@ class Participants extends CI_Controller{
 
         $data = json_decode($request->info,true);
         $this->load->view('admin/participants/form',$data);
+    }
+
+    public function setdefaultimage(){
+
+        $get = $this->input->get();
+        $this->participants_model->set_default_image($get);
+    }
+
+    public function removeimage(){
+
+        $get = $this->input->get();
+        $this->participants_model->remove_selected_image($get);
     }
 
     private function _upload_image($image){

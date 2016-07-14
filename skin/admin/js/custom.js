@@ -96,3 +96,33 @@
     });
 
 })(jQuery)
+
+function addImage($this){
+
+    var $participant_id = $($this).attr('data-participant-id');
+    var $image_id = $($this).attr('data-image-id');
+    
+}
+
+function setdefaultimage($this){
+
+    var $participant_id = $($this).attr('data-participant-id');
+    var $image_id = $($this).attr('data-image-id');
+    var $url = $($this).attr('data-addimage-url');
+
+    var jqXHR = $.get($url, { participant_id: $participant_id, image_id: $image_id } );
+    jqXHR.done(function(data){
+        $($this).closest('ul').find('span').css({"background":"#f7f7f7"});
+        $($this).css({"background":"#82bb42"});
+    });
+}
+
+function removeselectedimage($this){
+    var $image_id = $($this).attr('data-image-id');
+    var $url = $($this).attr('data-addimage-url');
+
+    var jqXHR = $.get($url, {image_id: $image_id } );
+    jqXHR.done(function(data){
+        $($this).closest('li').hide();
+    });
+}
